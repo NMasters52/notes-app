@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const NotesForm = () => {
+const NotesForm = ({ notes, setNotes}) => {
     const [formData, setFormData] = useState({
         title: '',
         catagory: 'Work',
@@ -9,15 +9,24 @@ const NotesForm = () => {
     })
 
     const handleChange = (e) => {
-        e.preventDefault();
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
         })
     }
 
+    const submitNote = (e) => {
+        e.preventDefault()
+
+        setNotes([{
+            id: Date.now(),
+            ...formData
+        }, ...notes])
+    }
+
   return (
-    <form action="">
+    <>
+        <form action="">
         <div className="mb-4">
             <label htmlFor="" className="block font-semibold">Title</label>
             <input 
@@ -63,8 +72,27 @@ const NotesForm = () => {
             >
             </textarea>
         </div>
-        
+        <button 
+            className="w-full rounded-lg py-2 cursor-pointer bg-purple-800 text-white hover:bg-purple-600"
+            onClick={submitNote}
+        >
+            Create New Note
+        </button>
     </form>
+
+    <div>
+        {notes.map((note) => (
+            <div> 
+                <p>{note.title}</p>
+                <p>{note.priority}</p>
+                <p>{note.catagory}</p>
+                <p>{note.description}</p>
+            </div>
+            
+        ))}
+    </div>
+    </>
+    
   )
 }
 
