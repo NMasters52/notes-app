@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 const NotesForm = ({ notes, setNotes}) => {
     const [formData, setFormData] = useState({
         title: '',
-        catagory: 'Work',
+        category: 'Work',
         priority: 'Medium',
         description: ''
     })
@@ -22,6 +22,17 @@ const NotesForm = ({ notes, setNotes}) => {
             id: Date.now(),
             ...formData
         }, ...notes])
+
+        setFormData({
+            title: '',
+            category: 'Work',
+            priority: 'Medium',
+            description: ''
+        })
+    }
+
+    const deleteNote = (id) => {
+            setNotes(notes.filter(note => id !== note.id))
     }
 
   return (
@@ -64,9 +75,10 @@ const NotesForm = ({ notes, setNotes}) => {
             </select>
         </div>
         <div className="mb-4">
-            <label htmlFor="" className="block font-semibold">Description</label>
+            <label htmlFor="description" className="block font-semibold">Description</label>
             <textarea
                 name="description"
+                value={formData.description}
                 className="w-full border-2 border-black rounded-sm"
                 onChange={handleChange}
             >
@@ -82,11 +94,25 @@ const NotesForm = ({ notes, setNotes}) => {
 
     <div>
         {notes.map((note) => (
-            <div> 
-                <p>{note.title}</p>
-                <p>{note.priority}</p>
-                <p>{note.catagory}</p>
-                <p>{note.description}</p>
+            <div 
+                key={note.id} 
+                className="border-l-4 rounded-lg w-full shadow-md bg-white mb-4 mt-4 p-2 text-wrap"
+                style={{
+                    borderLeftColor: note.priority === 'High' ? 'red' 
+                    : note.priority === 'Medium' ? 'orange' 
+                    : 'green'
+                }}
+            > 
+               <h4 className="font-bold">{note.title}</h4>
+                <p><strong>Priority:</strong> {note.priority}</p>
+                <p><strong>Category:</strong> {note.category}</p>
+                <p className="break-words">{note.description}</p>
+                <button
+                    onClick={() => deleteNote(note.id)}
+                    className="text-red-400 hover:text-red-800 cursor-pointer"
+                >
+                    🗑️ Delete
+                </button>
             </div>
             
         ))}
