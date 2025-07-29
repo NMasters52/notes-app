@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { NoteList } from './NoteList'
 import TextInput from './inputs/TextInput'
+import SelectInput from './inputs/SelectInput'
+import TextArea from './inputs/TextArea'
 
 
 const NotesForm = ({ notes, setNotes}) => {
@@ -57,42 +59,26 @@ const NotesForm = ({ notes, setNotes}) => {
                 onChange={(e) => handleChange(e)}
                 type="text"
             />
-            <div className="mb-4">
-                <label htmlFor="" className="block font-semibold">Priority</label>
-                <select 
-                    name='priority'
-                    className="w-full border-2 border-black rounded-sm"
-                    value={formData.priority}
-                    onChange={(e) => handleChange(e)}
-                > 
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
-                </select>
-            </div>
-            <div className="mb-4">
-                <label htmlFor="" className="block font-semibold">Category</label>
-                <select
-                    name='category'
-                    className="w-full border-2 border-black rounded-sm"
-                    value={formData.category}
-                    onChange={(e) => handleChange(e)}
-                > 
-                <option value="Personal">Personal</option>
-                <option value="Work">Work</option>
-                <option value="Ideas">Ideas</option>
-                </select>
-            </div>
-            <div className="mb-4">
-                <label htmlFor="description" className="block font-semibold">Description</label>
-                <textarea
-                    name="description"
-                    value={formData.description}
-                    className="w-full border-2 border-black rounded-sm"
-                    onChange={handleChange}
-                >
-                </textarea>
-            </div>
+            <SelectInput 
+                name="priority"
+                label="Priority"
+                formData={formData}
+                onChange={(e) => handleChange(e)}
+                options={['Low', 'Medium', 'High']}
+            />
+            <SelectInput
+                name='category'
+                label='Category'
+                formData={formData}
+                onChange={(e) => handleChange(e)}
+                options={['Personal', 'Work', 'Ideas']}
+            />
+            <TextArea
+                name='description'
+                label='Description'
+                formData={formData}
+                onChange={(e) => handleChange(e)}
+            />
             <button 
                 className="w-full rounded-lg py-2 cursor-pointer bg-purple-800 text-white hover:bg-purple-600"
                 onClick={submitNote}
