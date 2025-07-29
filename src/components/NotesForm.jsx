@@ -8,6 +8,7 @@ const NotesForm = ({ notes, setNotes}) => {
         priority: 'Medium',
         description: ''
     })
+    const [isFormOpen, setIsFormOpen] = useState(false)
 
     const handleChange = (e) => {
         setFormData({
@@ -38,7 +39,15 @@ const NotesForm = ({ notes, setNotes}) => {
 
   return (
     <>
-        <form action="">
+        <button 
+            className="w-full py-2 bg-purple-200 hover:bg-purple-400 rounded-lg cursor-pointer mb-4"
+            onClick={() => setIsFormOpen(!isFormOpen)}
+        >
+            {isFormOpen ? 'Hide Form ✖️' : 'Show Form ➕'}
+        </button>
+
+        {isFormOpen && (
+            <form action="">
         <div className="mb-4">
             <label htmlFor="" className="block font-semibold">Title</label>
             <input 
@@ -92,6 +101,7 @@ const NotesForm = ({ notes, setNotes}) => {
             Create New Note
         </button>
     </form>
+        )}
 
     <NoteList 
         notes={notes}

@@ -2,8 +2,8 @@ import NoteCard from "./NoteCard"
 
 
 export const NoteList = ({notes, deleteNote}) => {
-    if (notes === 0) {
-        return <p>No Notes Yet</p>
+    if (notes.length === 0) {
+        return <p className="mt-6 text-center w-full text-gray-600">No Notes Yet</p>
     }
 
   return (
