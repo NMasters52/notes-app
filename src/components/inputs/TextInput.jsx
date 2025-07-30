@@ -7,7 +7,7 @@ const TextInput = ({label, name, type, onChange, formData}) => {
         <input 
             name={name}
             type={type}
-            className="w-full border-2 border-black rounded-sm"
+            className="w-full border-2 border-black rounded-sm p-1"
             value={formData.title}
             onChange={onChange}
         />

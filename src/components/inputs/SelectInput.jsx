@@ -6,7 +6,7 @@ const SelectInput = ({options, label, name, formData, onChange}) => {
                 <label htmlFor={name} className="block font-semibold">{label}</label>
                 <select 
                     name={name}
-                    className="w-full border-2 border-black rounded-sm"
+                    className="w-full border-2 border-black rounded-sm p-2"
                     value={formData.name}
                     onChange={onChange}
                 > 

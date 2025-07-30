@@ -7,7 +7,7 @@ const TextArea = ({formData, name, label, onChange}) => {
         <textarea
             name={name}
             value={formData.name}
-            className="w-full border-2 border-black rounded-sm"
+            className="w-full border-2 border-black rounded-sm p-1"
             onChange={onChange}
         >
         </textarea>

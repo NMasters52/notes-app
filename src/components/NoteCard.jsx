@@ -10,16 +10,18 @@ const NoteCard = ({note, deleteNote}) => {
             : 'green'
         }}
     > 
-        <h4 className="font-bold">{note.title}</h4>
-        <p><strong>Priority:</strong> {note.priority}</p>
-        <p><strong>Category:</strong> {note.category}</p>
-        <p className="break-words">{note.description}</p>
+        <h3 className="font-bold mb-1">{note.title}</h3>
+        <p className="text-sm"><strong>Priority:</strong> {note.priority}</p>
+        <p className="text-sm mb-2"><strong>Category:</strong> {note.category}</p>
+        <p className="break-words text-md mb-2">{note.description}</p>
         <button
             onClick={() => deleteNote(note.id)}
-            className="text-red-400 hover:text-red-800 cursor-pointer"
+            className="text-red-400 hover:text-red-600 hover:bg-red-200 cursor-pointer w-full border-2 rounded-lg p-2"
         >
-            🗑️ Delete
-        </button>
+            Delete Note
+        </button> 
+
+        
     </div>
   )
 }
