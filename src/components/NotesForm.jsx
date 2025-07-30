@@ -46,6 +46,7 @@ const NotesForm = ({ notes, setNotes}) => {
         <button 
             className="w-full py-2 bg-purple-200 hover:bg-purple-400 rounded-lg cursor-pointer mb-4"
             onClick={() => setIsFormOpen(!isFormOpen)}
+            tabIndex={0}
         >
             {isFormOpen ? 'Hide Form ✖️' : 'Show Form ➕'}
         </button>
@@ -71,7 +72,7 @@ const NotesForm = ({ notes, setNotes}) => {
                 label='Category'
                 formData={formData}
                 onChange={(e) => handleChange(e)}
-                options={['Personal', 'Work', 'Ideas']}
+                options={['🏠 Personal', '💼 Work', '⚡ Ideas']}
             />
             <TextArea
                 name='description'
